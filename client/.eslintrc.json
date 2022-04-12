@@ -1,0 +1,30 @@
+{
+  "rules": {
+    "react/jsx-props-no-spreading": 0,
+    "react/jsx-filename-extension": [1, { "extensions": [".test.js", ".jsx"] }],
+    "no-console": "off",
+    "import/extensions": [0],
+    "react/react-in-jsx-scope": 0,
+    "react/function-component-definition": 0,
+    "react/require-default-props": 0,
+    "react/forbid-prop-types": 0,
+    "import/prefer-default-export": 0,
+    "no-underscore-dangle": 0,
+    "no-restricted-syntax": [
+      "error",
+      {
+        "selector": "CallExpression[callee.object.name='console'][callee.property.name!=/^(log|warn|error|info|trace)$/]",
+        "message": "Unexpected property on console object was called"
+      }
+    ]
+  },
+  "env": {
+    "browser": true,
+    "amd": true,
+    "node": true,
+    "jest": true
+  },
+
+  "extends": ["next", "airbnb", "plugin:react/recommended"],
+  "ignorePatterns": [ "out/*", "coverage/*", "node_modules", ".next/*" ]
+}
