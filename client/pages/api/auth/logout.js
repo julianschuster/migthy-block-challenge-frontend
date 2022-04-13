@@ -1,6 +1,5 @@
 import Cookies from 'cookies';
 import dbConnect from '../../../lib/dbConnect';
-import User from '../../../models/user';
 
 export default async function handler(req, res) {
   const { method } = req;

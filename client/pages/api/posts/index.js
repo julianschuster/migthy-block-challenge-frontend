@@ -11,8 +11,16 @@ export default async function handler(req, res) {
   switch (method) {
     case 'GET':
       try {
-        const users = await Post.find({}).sort('-date');
-        res.status(200).json({ success: true, data: users });
+        const posts = await Post.find({}).skip(req.query.skip || 0).sort('-date').limit(req.query.limit || 6);
+        const total = (await Post.find({})).length;
+        /* código para retrasar el request de los siguientes posts y ver como cargan on-scroll los
+        siguientes
+
+        setTimeout(() => {
+          res.status(200).json({ success: true, data: posts, total });
+        }, 2000);
+         */
+        res.status(200).json({ success: true, data: posts, total });
       } catch (error) {
         res.status(400).json({ success: false });
       }

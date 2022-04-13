@@ -1,13 +1,25 @@
 $brand-primary: #8e24aa;
 $brand-primary-hover: #a711ce;
+$brand-primary-light: #fdeeff;
 $grey: #f0f0f0;
 $grey-light: #dbdbdb;
 $grey-dark: #e7e7e7;
+$error-color: #ff3333;
+
+$facebook: #3b5998;
+$facebook-hover: #335baf;
+
+$google: #176bef;
+$google-hover: #337def;
+
+$logout: #f87272;
+$logout-hover: #f50c0c;
 
 html,
 body {
   padding: 0;
   margin: 0;
+  padding-bottom: 15px;
   font-family: "Inter", sans-serif;
   background-color: $grey;
 }
@@ -139,6 +151,10 @@ a {
   margin-right: 15px;
 }
 
+.margin-right-25 {
+  margin-right: 25px;
+}
+
 .margin-bottom-5 {
   margin-bottom: 5px;
 }
@@ -180,7 +196,7 @@ a {
 }
 
 .drag-n-drop {
-  border: dashed 2px #8e24aa;
+  border: dashed 2px $brand-primary;
   border-radius: 10px;
   text-align: center;
   flex-basis: 65%;
@@ -193,7 +209,7 @@ a {
   font-weight: 600;
   background: white;
   &:hover, &.dragging {
-    background-color: #fdeeff;
+    background-color: $brand-primary-light;
   }
 }
 
@@ -258,7 +274,7 @@ a {
 
   &.invalid {
     input {
-      border: solid 1px #ff3333;
+      border: solid 1px $error-color;
     }
   }
 
@@ -267,7 +283,7 @@ a {
     display: flex;
     align-items: center;
     font-size: 12px;
-    color: #ff3333;
+    color: $error-color;
 
 
     i {
@@ -285,7 +301,7 @@ a {
 .post-image {
   width: 100%;
   height: 180px;
-  background-color: #e7e7e7;
+  background-color: $grey-dark;
 }
 
 .post-like {
@@ -339,7 +355,7 @@ a {
 }
 
 .facebook {
-  background-color: #3b5998;
+  background-color: $facebook;
   padding: 5px;
   border-radius: 5px;
   color: white;
@@ -353,12 +369,12 @@ a {
   }
 
   &:hover {
-    background-color: #335baf;
+    background-color: $facebook-hover;
   }
 }
 
 .google {
-  background-color: #176bef;
+  background-color: $google;
   padding: 5px;
   border-radius: 5px;
   color: white;
@@ -372,7 +388,7 @@ a {
   }
 
   &:hover {
-    background-color: #337def;
+    background-color: $google-hover;
   }
 }
 
@@ -396,7 +412,7 @@ a {
 }
 
 .logout {
-  background-color: #f87272;
+  background-color: $logout;
   padding: 5px;
   border-radius: 5px;
   color: white;
@@ -410,12 +426,12 @@ a {
   }
 
   &:hover {
-    background-color: #f50c0c;
+    background-color: $logout-hover;
   }
 }
 
 .signin {
-  background-color: #3b3b3b;
+  background-color: $brand-primary;
   padding: 10px;
   border-radius: 5px;
   color: white;
@@ -429,13 +445,13 @@ a {
   }
 
   &:hover {
-    background-color: #565656;
+    background-color: $brand-primary-hover;
   }
 }
 
 .preview {
   width: 200px;
-  background-color: #e7e7e7;
+  background-color: $grey-dark;
   padding: 15px;
   border-radius: 5px;
   align-self: flex-start;
@@ -458,3 +474,22 @@ a {
 .textarea {
   margin-bottom: 15px;
 }
+
+.loader {
+  border: 10px solid $brand-primary-light;
+  border-top: 10px solid $brand-primary;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+

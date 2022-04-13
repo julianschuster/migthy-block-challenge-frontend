@@ -13,7 +13,6 @@ export default function Document() {
           rel="stylesheet"
         />
         <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet" />
-        <title>Pixowlgram</title>
         <meta name="description" content="Share your photos with the world" />
       </Head>
       <body>
