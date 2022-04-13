@@ -12,11 +12,9 @@ export default async function handler(req, res) {
     case 'GET':
       try {
         const userId = cookies.get('userId');
-        console.log(req.cookies);
         const user = await User.findById(userId);
         res.status(200).json({ success: true, data: user });
       } catch (error) {
-        console.log(error);
         res.status(400).json({ success: false });
       }
       break;
