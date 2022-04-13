@@ -76,7 +76,11 @@ const Home = ({ user: { username, _id } = { username: '', _id: '' } }) => {
   return (
     <div className="container container-with-header">
       <div className="flex-align align-items-stretch uploader">
-        <Uploader username={username} setShouldUpdate={setShouldUpdate} />
+        <Uploader
+          username={username}
+          setShouldUpdate={setShouldUpdate}
+          shouldUpdate={shouldUpdate}
+        />
         <Profile username={username} setSearchQuery={setSearchQuery} />
         {posts.length > 0 ? posts
           .filter(

@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { useRef, useState } from 'react';
 import { Modal } from './modal';
 
-const Uploader = ({ setShouldUpdate }) => {
+const Uploader = ({ setShouldUpdate, shouldUpdate }) => {
   const [dragging, setIsDragging] = useState(false);
   const [description, setDescription] = useState();
 
@@ -55,10 +55,25 @@ const Uploader = ({ setShouldUpdate }) => {
   };
 
   const createPost = async (post) => {
+    const formData = new FormData();
+
+    const blob = await fetch(post.url).then((r) => r.blob());
+
+    // Update the formData object
+    formData.append(
+      'newPost',
+      blob,
+    );
+
+    formData.append('description', post.description);
+
     const { success } = await fetch('/api/posts', {
       method: 'POST',
+      headers: {
+        Accept: 'application/json',
+      },
       credentials: 'include',
-      body: JSON.stringify({ post }),
+      body: formData,
     }).then((res) => res.json());
     if (success) {
       setShouldUpdate((s) => !s);
@@ -116,6 +131,7 @@ const Uploader = ({ setShouldUpdate }) => {
           <div className="flex-align flex-direction-column justify-content-space-between">
             <textarea
               className="textarea"
+              key={shouldUpdate}
               onBlur={({ target: { value } }) => setDescription(value)}
               name="description"
               id="description"
@@ -144,4 +160,5 @@ export { Uploader };
 
 Uploader.propTypes = {
   setShouldUpdate: PropTypes.func,
+  shouldUpdate: PropTypes.bool,
 };

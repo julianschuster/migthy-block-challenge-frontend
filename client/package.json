@@ -11,6 +11,7 @@
   "dependencies": {
     "cookies": "^0.8.0",
     "mongoose": "^6.2.10",
+    "multiparty": "^4.2.3",
     "next": "12.1.4",
     "prop-types": "^15.8.1",
     "react": "18.0.0",
