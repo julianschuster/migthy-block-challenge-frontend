@@ -77,7 +77,9 @@ function Signup() {
               />
             </div>
             <div className="invalidMessage">
-              <i className="ri-error-warning-fill" />
+              {
+                (!isValidPassword || !areSamePasswords) && <i className="ri-error-warning-fill" />
+              }
               {
                 !isValidPassword && (
                   <>

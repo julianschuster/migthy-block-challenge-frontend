@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import timeSince from '../utils/timeSince';
 
 const Post = ({
-  likes, url, description, date, _id, userId, setShouldUpdate,
+  likes, description, date, _id, userId, setShouldUpdate, extension,
 }) => {
   const likePost = async (postId, user) => {
     const { success } = await fetch(`/api/posts/${postId}/like`, {
@@ -15,8 +15,8 @@ const Post = ({
 
   return (
     <div className="index-item image-border flex-align flex-direction-column post margin-right-15">
-      <div className="post-image position-relative border-radius-small">
-        <div className="image " />
+      <div className="post-image position-relative border-radius-small flex-align">
+        <img className="image width-100" src={`posts/${_id}.${extension}`} alt={`post with id ${_id}`} />
         <span
           role="presentation"
           onClick={() => likePost(_id, userId)}
@@ -53,12 +53,12 @@ const Post = ({
 
 Post.propTypes = {
   _id: PropTypes.string,
-  userId: PropTypes.string,
-  description: PropTypes.string,
-  setShouldUpdate: PropTypes.func,
-  url: PropTypes.string,
-  likes: PropTypes.arrayOf(PropTypes.string),
   date: PropTypes.string,
+  description: PropTypes.string,
+  extension: PropTypes.any,
+  likes: PropTypes.arrayOf(PropTypes.string),
+  setShouldUpdate: PropTypes.func,
+  userId: PropTypes.string,
 };
 
 export { Post };

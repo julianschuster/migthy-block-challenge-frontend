@@ -49,8 +49,11 @@ const Uploader = ({ setShouldUpdate, shouldUpdate }) => {
     const {
       dataTransfer: { files: finalFile },
     } = e;
-    inputImage.current.files = finalFile;
-    uploadPhoto();
+
+    if (finalFile[0].type.startsWith('image/')) {
+      inputImage.current.files = finalFile;
+      uploadPhoto();
+    }
     setIsDragging(false);
   };
 

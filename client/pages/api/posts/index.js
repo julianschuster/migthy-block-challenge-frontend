@@ -1,5 +1,6 @@
 import Cookies from 'cookies';
 import multiparty from 'multiparty';
+import fs from 'node:fs/promises';
 import dbConnect from '../../../lib/dbConnect';
 import Post from '../../../models/post';
 
@@ -37,24 +38,27 @@ export default async function handler(req, res) {
         const form = new multiparty.Form();
         const data = await new Promise((resolve, reject) => {
           form.parse(req, (err, fields, files) => {
+            // eslint-disable-next-line prefer-promise-reject-errors
             if (err) reject({ err });
             resolve({ fields, files });
           });
         });
 
         const image = data.files.newPost[0];
-        // handle image the way the backend wants to and get the destination of it as 'url'
+        const extension = image.headers['content-type'].replace('image/', '');
 
-        const url = 'destination of the file';
         const userId = cookies.get('userId');
+
         const posted = await Post.create(
           {
             user: userId,
-            url,
             description: data.fields.description[0],
             date: new Date(),
+            extension,
           },
         );
+
+        await fs.rename(image.path, `public/posts/${posted._id}.${extension}`);
 
         res.status(201).json({ success: true, data: posted });
       } catch (error) {

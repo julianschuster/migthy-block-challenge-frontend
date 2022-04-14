@@ -5,7 +5,9 @@ import mongoose from 'mongoose';
  https://github.com/vercel/next.js/blob/canary/examples/with-mongodb-mongoose/utils/dbConnect.js
  * */
 
-const { MONGODB_URI } = process.env;
+const {
+  MONGODB_URI, MONGODB_DB, MONGODB_PWD, MONGODB_PROTOCOL, MONGODB_OPTIONS, MONGODB_USER,
+} = process.env;
 
 if (!MONGODB_URI) {
   throw new Error(
@@ -37,8 +39,10 @@ async function dbConnect() {
       bufferCommands: false,
     };
 
+    const finalUri = `${MONGODB_PROTOCOL}${MONGODB_USER}:${MONGODB_PWD}@${MONGODB_URI}${MONGODB_OPTIONS}`;
+
     // eslint-disable-next-line no-shadow
-    cached.promise = mongoose.connect(MONGODB_URI, opts).then((mongoose) => mongoose);
+    cached.promise = mongoose.connect(finalUri, opts).then((mongoose) => mongoose);
   }
   cached.conn = await cached.promise;
   return cached.conn;

@@ -475,6 +475,11 @@ a {
   margin-bottom: 15px;
 }
 
+.image {
+  object-fit: contain;
+  max-height: 100%;
+}
+
 .loader {
   border: 10px solid $brand-primary-light;
   border-top: 10px solid $brand-primary;
