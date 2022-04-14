@@ -6,6 +6,9 @@ import { Profile } from '../components/profile';
 import { Post } from '../components/post';
 import { Loader } from '../components/loader';
 import { fuzzyMatch } from '../utils/fuzzyMatch';
+import { getUser } from './api/users/[id]';
+
+import dbConnect from '../lib/dbConnect';
 
 const Home = ({ user: { username, _id } = { username: '', _id: '' } }) => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -120,11 +123,15 @@ const Home = ({ user: { username, _id } = { username: '', _id: '' } }) => {
 };
 
 export const getServerSideProps = async (ctx) => {
-  const { data: user } = await fetch(`http://localhost:3000/api/users/${ctx.req.cookies.userId}`).then((res) => res.json());
+  await dbConnect();
+  const { _id, ...user } = await getUser(ctx.req.cookies.userId).catch((err) => console.log(err));
 
   return {
     props: {
-      user: user || {},
+      user: {
+        _id: _id.toString(),
+        ...user,
+      } || {},
     },
   };
 };
