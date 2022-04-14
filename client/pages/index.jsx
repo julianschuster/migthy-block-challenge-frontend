@@ -124,12 +124,13 @@ const Home = ({ user: { username, _id } = { username: '', _id: '' } }) => {
 
 export const getServerSideProps = async (ctx) => {
   await dbConnect();
-  const { _id, ...user } = await getUser(ctx.req.cookies.userId).catch((err) => console.log(err));
+  // eslint-disable-next-line max-len
+  const { _id, ...user } = (await getUser(ctx.req.cookies.userId).catch((err) => console.log(err))) || {};
 
   return {
     props: {
       user: {
-        _id: _id.toString(),
+        _id: _id?.toString(),
         ...user,
       } || {},
     },
