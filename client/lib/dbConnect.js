@@ -6,7 +6,7 @@ import mongoose from 'mongoose';
  * */
 
 const {
-  MONGODB_URI, MONGODB_DB, MONGODB_PWD, MONGODB_PROTOCOL, MONGODB_OPTIONS, MONGODB_USER,
+  MONGODB_URI, MONGODB_PWD, MONGODB_PROTOCOL, MONGODB_DB, MONGODB_OPTIONS, MONGODB_USER,
 } = process.env;
 
 if (!MONGODB_URI) {
@@ -39,7 +39,7 @@ async function dbConnect() {
       bufferCommands: false,
     };
 
-    const finalUri = `${MONGODB_PROTOCOL}${MONGODB_USER}:${MONGODB_PWD}@${MONGODB_URI}${MONGODB_OPTIONS}`;
+    const finalUri = `${MONGODB_PROTOCOL}${MONGODB_USER}:${MONGODB_PWD}@${MONGODB_URI}/${MONGODB_DB}${MONGODB_OPTIONS}`;
 
     // eslint-disable-next-line no-shadow
     cached.promise = mongoose.connect(finalUri, opts).then((mongoose) => mongoose);

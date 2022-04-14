@@ -61,8 +61,13 @@ const Home = ({ user: { username, _id } = { username: '', _id: '' } }) => {
   }, [currentItem, isFetching]);
 
   const getPosts = async () => {
-    const { data: basePosts } = await fetch(`/api/posts?skip=0&limit=${currentItem + 6}`).then((res) => res.json());
+    const { data: basePosts, total } = await fetch(`/api/posts?skip=0&limit=${currentItem + 6}`).then((res) => res.json());
     setPosts(basePosts);
+    if (total > totalCount) {
+      setCurrentItem((prev) => prev + total - totalCount);
+      setTotalLoading((prev) => prev + total - totalCount);
+    }
+    setTotalCount(total);
   };
 
   useEffect(() => {

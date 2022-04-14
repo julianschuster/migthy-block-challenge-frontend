@@ -68,7 +68,7 @@ const Uploader = ({ setShouldUpdate, shouldUpdate }) => {
       blob,
     );
 
-    formData.append('description', post.description);
+    formData.append('description', post.description || '');
 
     const { success } = await fetch('/api/posts', {
       method: 'POST',
