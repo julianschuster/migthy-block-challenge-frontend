@@ -4,7 +4,7 @@ import {
 
 export default function Document() {
   return (
-    <Html>
+    <Html lang="en">
       <Head>
         <link rel="preconnect" href="/fonts.googleapis.com" />
         <link rel="preconnect" href="/fonts.gstatic.com" />
