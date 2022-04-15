@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { useRef, useState } from 'react';
+import { toast } from 'react-hot-toast';
 import { Modal } from './modal';
-import {toast} from "react-hot-toast";
 
 const Uploader = ({ setShouldUpdate, shouldUpdate }) => {
   const [dragging, setIsDragging] = useState(false);
