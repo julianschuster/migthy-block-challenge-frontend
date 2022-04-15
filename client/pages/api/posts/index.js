@@ -58,7 +58,7 @@ export default async function handler(req, res) {
           },
         );
 
-        await fs.rename(image.path, `./../../../posts/${posted._id}.${extension}`);
+        await fs.rename(image.path, `posts/${posted._id}.${extension}`);
 
         res.status(201).json({ success: true, data: posted });
       } catch (error) {
