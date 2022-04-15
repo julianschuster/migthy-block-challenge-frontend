@@ -11,12 +11,14 @@ First, create a `.env.local` file located in `/client`folder.
 
 Fill it with the env-variables declared in the `env.example` file.
 
-[Here](https://www.mongodb.com/docs/manual/reference/connection-string/) is the information about what does every variable means
+[Here](https://www.mongodb.com/docs/manual/reference/connection-string/) is the information about what does every variable referred to mongodb means
 
 You must have a local running mongodb in background or a mongo server to connect to it.
 
 Then, install the dependencies:
 ```bash
+cd client/
+
 npm i
 # or
 yarn
