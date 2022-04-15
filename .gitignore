@@ -35,4 +35,4 @@ yarn-error.log*
 
 .DS_Store
 
-client/public/posts/
+client/posts/

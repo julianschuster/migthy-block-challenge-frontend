@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "startServer": "pm2 start npm --name \"next\" -- run start"
   },
   "dependencies": {
     "cookies": "^0.8.0",

@@ -82,6 +82,7 @@ const Uploader = ({ setShouldUpdate, shouldUpdate }) => {
       body: formData,
     }).then((res) => res.json());
     if (success) {
+      setDescription('');
       setShouldUpdate((s) => !s);
       closeModal();
       toast.success('Uploaded successfully');
