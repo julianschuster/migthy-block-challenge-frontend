@@ -81,6 +81,8 @@ const Home = ({ user: { username, _id } = { username: '', _id: '' } }) => {
     if (!_id) router.push('/login');
   }, [_id]);
 
+  if (!_id) return <div className="flex-align justify-content-space-around container container-with-header"><Loader /></div>;
+
   return (
     <div className="container container-with-header">
       <div className="flex-align align-items-stretch uploader">
@@ -123,6 +125,14 @@ const Home = ({ user: { username, _id } = { username: '', _id: '' } }) => {
 };
 
 export const getServerSideProps = async (ctx) => {
+  if (!ctx.req.cookies.userId) {
+    return {
+      props: {
+        user: {},
+      },
+    };
+  }
+
   await dbConnect();
   // eslint-disable-next-line max-len
   const { _id, ...user } = (await getUser(ctx.req.cookies.userId).catch((err) => console.log(err))) || {};

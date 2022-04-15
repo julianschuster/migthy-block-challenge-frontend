@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import { useRef, useState } from 'react';
 import { Modal } from './modal';
+import {toast} from "react-hot-toast";
 
 const Uploader = ({ setShouldUpdate, shouldUpdate }) => {
   const [dragging, setIsDragging] = useState(false);
@@ -53,6 +54,8 @@ const Uploader = ({ setShouldUpdate, shouldUpdate }) => {
     if (finalFile[0].type.startsWith('image/')) {
       inputImage.current.files = finalFile;
       uploadPhoto();
+    } else {
+      toast.error('Only image types are accepted');
     }
     setIsDragging(false);
   };
@@ -81,6 +84,9 @@ const Uploader = ({ setShouldUpdate, shouldUpdate }) => {
     if (success) {
       setShouldUpdate((s) => !s);
       closeModal();
+      toast.success('Uploaded successfully');
+    } else {
+      toast.error('Couldn\'t upload photo');
     }
   };
 
