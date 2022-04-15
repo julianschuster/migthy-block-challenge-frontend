@@ -62,17 +62,17 @@ function Signup() {
               placeholder="username"
               className="margin-top-10 font-size-large width-100 input"
             />
-            <div className="invalidMessage">
-              {
-                (!isAvailable) && (
+          </div>
+          <div className="invalidMessage">
+            {
+              (!isAvailable) && (
                 <>
                   <i className="ri-error-warning-fill" />
                   {' '}
                   Username is not available, pick another one
                 </>
-                )
-              }
-            </div>
+              )
+            }
           </div>
           <div className="width-100">
             <div
