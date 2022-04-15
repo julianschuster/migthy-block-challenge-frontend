@@ -23,7 +23,7 @@ function Login() {
 
   return (
     <div className="container-with-header login-container display-flex flex-direction-column login">
-      <form onSubmit={onSubmit} className="flex-direction-column flex-align align-items-baseline">
+      <form onSubmit={onSubmit} className="flex-direction-column flex-align align-items-baseline login">
         <h2 className="flex-align justify-content-space-around width-100 font-size-x-large">Login</h2>
         <div className={`login flex-align align-items-flex-end ${invalidRequest ? 'invalid' : ''}`}>
           <i className="ri-user-line" />
