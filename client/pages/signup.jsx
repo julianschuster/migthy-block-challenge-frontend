@@ -24,6 +24,7 @@ function Signup() {
     }
     if (confirmPwd !== password) {
       setAreSamePasswords(false);
+      return true;
     }
     const { success } = await fetch('/api/users', { method: 'POST', body: JSON.stringify({ username, password, picture: '' }) }).then(((res) => res.json()));
     if (success) {
